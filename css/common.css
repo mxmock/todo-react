@@ -1,0 +1,31 @@
+/***********************************************************************/
+/***************************** BODY / HTML *****************************/
+/***********************************************************************/
+
+*:not(head, script, table, tbody, tfoot, thead, tr, td, th),
+::after,
+::before {
+  display: flex;
+  flex-direction: column;
+}
+
+html {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  font-weight: normal;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+body {
+  flex: 1 0;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  overflow: auto;
+}

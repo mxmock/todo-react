@@ -1,0 +1,24 @@
+body {
+  align-items: center;
+  justify-content: center;
+}
+
+.todos {
+  gap: 16px;
+}
+
+.todo {
+  cursor: pointer;
+  padding: 0 16px;
+  min-height: 32px;
+  line-height: 32px;
+  border-radius: 4px;
+  transition: 0.2s ease-out;
+  background: antiquewhite;
+  box-shadow: 0px 2px 4px 0px rgb(0 0 0 / 30%);
+}
+
+.todo:hover {
+  background: bisque;
+  transform: scale(1.05);
+}
