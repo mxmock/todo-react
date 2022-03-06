@@ -1,11 +1,14 @@
-# Todo App - Step 1
+# Todo App - Step 2
 
-- [ ] Créer un composant nommé `App` qui _return_ "" pour le moment
-- [ ] Créer un composant nommé `Todos` qui _return_ "" pour le moment
-- [ ] Créer un composant nommé `Todo` qui _return_ "" pour le moment
-- [ ] Le composant `Todo` doit avoir une variable nommée `name` associée au nom d'un todo, sous forme de string, et provenant de la __props__ du composant
-- [ ] Le composant `Todo`doit maintenant _return_ une balise `<li class='todo'></li>` qui affiche la valeur de la variable `name`.
-- [ ] Le composant `Todos` doit avoir une variable nommée `allTodos` qui est une liste de todos (liste d'objet JS correspondant à un todo), et provenant de la __props__ du composant
-- [ ] Le composant `Todos` doit maintenant _return_ une balise `<ul class="todos"></ul>` qui affiche autant de composants `<Todo />` que contient l'array `allTodos`
-- [ ] Le composant `App` doit avoir une constante `TODOS` qui contient une liste d'objets (5), apparentés à un todo. Un todo est un objet JS qui contient les propriétés `id`, `name`, `isCompleted` et `isDeleted`
-- [ ] Le composant `App` doit maintenant _return_ le composant `<Todos />` avec comme __props__ la liste de tous les todos.
+### Marquer un todo comme "complété"
+
+- [ ] Ajouter une variable `isCompleted` dans le composant `Todo` (transmise par le parent direct, via __props__)
+- [ ] Faire en sorte que lorsqu'un todo est complété, la class `todo--completed` est ajouté au todo. Puis cette class est retirée si le todo n'est pas complété.
+- [ ] Implémenter un event `onClick` sur un todo: lors du click, afficher une `alert` avec le nom du todo qui a été clické
+- [ ] Le composant `Todo` a désormais une variable `id` (provenant de son parent direct, via les __props__)
+- [ ] Lors du click sur un todo, le composant `Todo` qui a été clické doit maintenant transmettre son `id` à son parent direct (annuler l'`alert` lors du click)
+- [ ] Afficher, depuis `Todos`, l'`id` du `Todo` qui a été clické
+- [ ] Dans le composant `App`, créer un __state__ `todos` de la liste de tous les todos; avec un état initial qui vaut `TODOS`
+- [ ] Toujours dans `App`, créer une fonction `updateList` qui aura pour but de mettre à jour le __state__ (liste `todos`), et qui sera transmise à son enfant direct `Todos`
+- [ ] Dans `Todos`, au lieu de simplement afficher l'`id` du todo clické, maintenant modifier la liste `allTodos` en indiquant que le todo clické a désormais une propriété `isCompleted` qui vaut `true`
+- [ ] Maintenant renvoyer cette nouvelle liste de todos depuis `Todos` vers `App`, mettre à jour le __state__ avec la nouvelle liste

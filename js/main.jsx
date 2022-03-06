@@ -9,7 +9,7 @@ const App = () => {
     {
       id: 2,
       name: "todo 2",
-      isCompleted: false,
+      isCompleted: true,
       isDeleted: false,
     },
     {
@@ -32,26 +32,56 @@ const App = () => {
     },
   ];
 
-  return <Todos allTodos={TODOS} />;
+  const [todos, setTodos] = React.useState(TODOS);
+
+  const updateList = (list) => {
+    setTodos([...list]);
+  };
+
+  return <Todos allTodos={todos} markAsCompleted={updateList} />;
 };
 
 const Todos = (props) => {
-  const { allTodos } = props;
+  const { allTodos, markAsCompleted } = props;
+
+  const completeTodo = (id) => {
+    const newTodos = allTodos.map((todo) => {
+      if (todo.id === id) todo.isCompleted = !todo.isCompleted;
+      return todo;
+    });
+    markAsCompleted(newTodos);
+  };
 
   return (
     <ul className="todos">
       {allTodos.map((todo) => (
-        <Todo key={todo.id} name={todo.name} />
+        <Todo
+          key={todo.id}
+          name={todo.name}
+          id={todo.id}
+          isCompleted={todo.isCompleted}
+          completeTodo={completeTodo}
+        />
       ))}
     </ul>
   );
 };
 
 const Todo = (props) => {
-  // const name = props.name;
-  const { name } = props;
+  const { name, id, isCompleted, completeTodo } = props;
 
-  return <li className="todo">{name}</li>;
+  const handleClick = () => {
+    completeTodo(id);
+  };
+
+  return (
+    <li
+      className={isCompleted ? "todo todo--completed" : "todo"}
+      onClick={handleClick}
+    >
+      {name}
+    </li>
+  );
 };
 
 // Rendu dans le DOM
