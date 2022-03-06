@@ -1,16 +1,7 @@
-body {
-  align-items: center;
-  justify-content: center;
-  background: lightcoral;
-}
-
-.todos {
-  gap: 16px;
-}
-
 .todo {
   cursor: pointer;
   padding: 0 16px;
+  overflow: hidden;
   min-height: 32px;
   line-height: 32px;
   user-select: none;
@@ -25,8 +16,8 @@ body {
   transform: scale(1.05);
 }
 
-.todo--completed,
-.todo--completed:hover {
+.completed,
+.completed:hover {
   cursor: default;
   transform: none;
   box-shadow: none;
@@ -34,7 +25,7 @@ body {
   background: lightgrey;
 }
 
-.todo--completed:after {
+.completed:after {
   top: 50%;
   left: 50%;
   width: 80%;
@@ -43,5 +34,5 @@ body {
   position: absolute;
   border-radius: 50px;
   background: rgba(128, 128, 128, 0.788);
-  transform: translate(-50%, -50%) rotate(-15deg);
+  transform: translate(-50%, -50%) rotate(-3deg);
 }
