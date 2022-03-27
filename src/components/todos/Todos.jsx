@@ -16,7 +16,7 @@ const Todos = (props) => {
   };
 
   return (
-    <ul className={mc.todos}>
+    <ul className={mc.container}>
       {allTodos.map((todo) => (
         <Todo
           key={todo.id}
