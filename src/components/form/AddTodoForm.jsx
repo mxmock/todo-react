@@ -3,7 +3,7 @@ import Button from "../button/Button";
 import Input from "../input/Input";
 import mc from "./add-todo-form.module.scss";
 
-const AddTodoForm = (props) => {
+const AddTodoForm = ({ allTodos, onAdd }) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleChange = (event) => {
@@ -12,7 +12,17 @@ const AddTodoForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(inputValue);
+    if (!inputValue) return;
+    const now = Date.now();
+    const todo = {
+      id: now,
+      name: inputValue,
+      isCompleted: false,
+      isDelete: false,
+    };
+    const newList = [...allTodos, todo];
+    onAdd(newList);
+    setInputValue("");
   };
 
   return (
