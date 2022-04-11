@@ -5,6 +5,7 @@ const Button = (props) => {
 
   const handleClick = () => {
     if (type === "submit") return;
+    onClick();
   };
 
   return (
