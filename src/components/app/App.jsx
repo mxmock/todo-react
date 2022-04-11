@@ -8,14 +8,17 @@ const App = () => {
   const [todos, setTodos] = useState(TODOS);
 
   const updateList = (list) => {
-    console.log(list);
     setTodos([...list]);
   };
 
   return (
     <div className="container">
       <AddTodoForm allTodos={todos} onAdd={updateList} />
-      <Todos allTodos={todos} markAsCompleted={updateList} />
+      <Todos
+        allTodos={todos}
+        markAsCompleted={updateList}
+        updateTodo={updateList}
+      />
     </div>
   );
 };
