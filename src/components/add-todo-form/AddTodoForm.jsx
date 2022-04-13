@@ -18,7 +18,6 @@ const AddTodoForm = ({ allTodos, onAdd }) => {
       id: now,
       name: inputValue,
       isCompleted: false,
-      isDelete: false,
     };
     const newList = [...allTodos, todo];
     onAdd(newList);
