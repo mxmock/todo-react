@@ -28,3 +28,7 @@
 ##### _Dans `App.jsx` :_
 
 - [ ] Envoyer la fonction d'update de liste au composant `Todos`.
+
+##### _Bonus :_
+
+- [ ] Permettre l'annulation d'une modification de todo avec la touche `Escape`
