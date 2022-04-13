@@ -6,17 +6,19 @@ const Todos = (props) => {
 
   const completeTodo = (id, list) => {
     return list.map((todo) => {
-      if (todo.id === id) todo.isCompleted = !todo.isCompleted;
+      if (todo.id === id) return { ...todo, isCompleted: !todo.isCompleted };
       return todo;
     });
   };
 
-  const updateTodoValue = (id, value, list) => {
-    return list.map((todo) => {
-      if (todo.id === id) todo.name = value;
-      return todo;
-    });
-  };
+  // const updateTodoValue = (id, value, list) => {
+  // return list.map((todo) => {
+  // if (todo.id === id) return { ...todo, name: value };
+  // return todo;
+  // });
+  // };
+
+  const updateTodoValue = (id, name, list) => list.map((todo) => (todo.id === id ? { ...todo, name } : todo));
 
   const handleCompleteTodo = (id) => {
     markAsCompleted(completeTodo(id, allTodos));
