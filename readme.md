@@ -1,31 +1,16 @@
-# Todo App - Step 1
+# Todo App - Step 2
 
-> _Notions: JSX, composants fonctionnels, props_
+> _Notions: events, states, hooks, lifting state up_
 
-Pour le developpement de cette app nous allons baser toute la logique sur un objet JS correspondant à un todo.
+### Marquer un todo comme "complété"
 
-Cet objet aura les propriétés suivantes: `id`, `name` et `isCompleted`.
-
-Il faut garder à l'esprit que ce sera la représentation de nos données, et chaque fois que nos données changent, react réactualisera la vue.
-
-### Créer les composants de base
-
-- [ ] Créer un composant nommé `App`
-- [ ] Créer un composant nommé `TodosList`
-- [ ] Créer un composant nommé `TodoItem`
-
-##### _Le composant `App` :_
-
-- [ ] Créer une constante `TODOS` qui contient une liste d'objets (5 par exemple), chacun apparentés à un todo.
-- [ ] Devra _return_ le composant `<TodosList />` qui aura un **attribut** `todos`, correspondant à la liste de tous les todos.
-
-##### _Le composant `TodosList` :_
-
-- [ ] Devra avoir une **props** nommée `todos` qui sera la liste de todos (tableau d'objet JS correspondant à un todo).
-- [ ] Devra _return_ une balise `<ul className="todos"></ul>` qui affichera autant de composants `<TodoItem />` que d'éléments dans l'array `todos`
-
-##### _Le composant `TodoItem` :_
-
-- [ ] Devra avoir une **props** `name` correspondant au nom d'un todo, ce sera une string.
-- [ ] Devra _return_ une balise `<li className='todo'></li>`.
-- [ ] Dans cette balise, il y aura une balise `<span>` qui affichera la valeur de `name`
+- [ ] Ajouter une variable `isCompleted` dans le composant `Todo` (transmise par le parent direct, via __props__)
+- [ ] Faire en sorte que lorsqu'un todo est complété, la class `todo--completed` est ajoutée au todo. Puis cette class est retirée si le todo n'est pas complété.
+- [ ] Implémenter un event `onClick` sur un todo: lors du click, afficher une `alert` avec le nom du todo qui a été clické
+- [ ] Le composant `Todo` a désormais une variable `id` (provenant de son parent direct, via les __props__)
+- [ ] Lors du click sur un todo, le composant `Todo` qui a été clické doit maintenant transmettre son `id` à son parent direct (annuler l'`alert` lors du click)
+- [ ] Afficher, depuis `Todos`, l'`id` du `Todo` qui a été clické
+- [ ] Dans le composant `App`, créer un __state__ `todos` de la liste de tous les todos; avec un état initial qui vaut `TODOS`
+- [ ] Toujours dans `App`, créer une fonction `updateList` qui aura pour but de mettre à jour le __state__ (liste `todos`), et qui sera transmise à son enfant direct `Todos`
+- [ ] Dans `Todos`, au lieu de simplement afficher l'`id` du todo clické, maintenant modifier la liste `allTodos` en modifiant le todo clické qui aura désormais une propriété `isCompleted` qui vaut `true`
+- [ ] Maintenant renvoyer cette nouvelle liste de todos depuis `Todos` vers `App`, mettre à jour le __state__ avec la nouvelle liste

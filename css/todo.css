@@ -8,13 +8,35 @@
   padding: 0 16px;
   min-height: 32px;
   line-height: 32px;
+  user-select: none;
   border-radius: 4px;
-  transition: 0.2s ease-out;
+  transition: 0.1s ease-out;
   background: antiquewhite;
-  box-shadow: 0px 2px 4px 0px rgb(0 0 0 / 30%);
+  box-shadow: 0px 2px 4px 0px hsl(34deg 78% 20% / 40%);
 }
 
 .todo:hover {
   background: bisque;
   transform: scale(1.05);
+}
+
+.todo--completed,
+.todo--completed:hover {
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+  position: relative;
+  background: lightgrey;
+}
+
+.todo--completed:after {
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 6px;
+  content: "";
+  position: absolute;
+  border-radius: 50px;
+  background: rgba(128, 128, 128, 0.788);
+  transform: translate(-50%, -50%) rotate(-15deg);
 }
