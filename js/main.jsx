@@ -27,26 +27,37 @@ const App = () => {
     },
   ];
 
-  return <Todos allTodos={TODOS} />;
+  return <TodosList todos={TODOS} />;
 };
 
-const Todos = (props) => {
-  const { allTodos } = props;
+const TodosList = (props) => {
+  // const todos = props.todos;
+  const { todos } = props;
 
-  return (
-    <ul className="todos">
-      {allTodos.map((todo) => (
-        <Todo key={todo.id} name={todo.name} />
-      ))}
-    </ul>
-  );
+  // version basique
+  const getList = () => {
+    const list = [];
+    todos.forEach((todo) => {
+      list.push(<TodoItem key={todo.id} name={todo.name} />);
+    });
+    return list;
+  };
+
+  // version moderne
+  // const getList = () => todos.map((t) => <TodoItem key={t.id} name={t.name} />);
+
+  return <ul className="todos">{getList()}</ul>;
 };
 
-const Todo = (props) => {
+const TodoItem = (props) => {
   // const name = props.name;
   const { name } = props;
 
-  return <li className="todo">{name}</li>;
+  return (
+    <li className="todo">
+      <span>{name}</span>
+    </li>
+  );
 };
 
 // Rendu dans le DOM

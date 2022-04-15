@@ -1,10 +1,6 @@
-body {
-  align-items: center;
-  justify-content: center;
-}
-
 .todos {
   gap: 16px;
+  padding: 32px;
 }
 
 .todo {
