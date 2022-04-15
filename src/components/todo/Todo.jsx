@@ -5,12 +5,9 @@ import mc from "./todo.module.scss";
 const TODO_MODE = { READ: 1, EDIT: 2 };
 
 const Todo = (props) => {
-  const { name, id, isCompleted, completeTodo, onUpdate } = props;
+  const { name, id, isCompleted, onComplete, onUpdate } = props;
 
-  const [mode, setMode] = useState(TODO_MODE.READ);
-  const [updatedValue, setUpdatedValue] = useState(name);
-
-  const handleClick = () => completeTodo(id);
+  const handleClick = () => onComplete(id);
   const handleEditClick = () => setMode(TODO_MODE.EDIT);
   const handleInputChange = (e) => setUpdatedValue(e.target.value);
 
@@ -28,6 +25,9 @@ const Todo = (props) => {
       cancel();
     }
   };
+
+  const [mode, setMode] = useState(TODO_MODE.READ);
+  const [updatedValue, setUpdatedValue] = useState(name);
 
   return (
     <li className={isCompleted ? `${mc.todo} ${mc.completed}` : `${mc.todo}`}>

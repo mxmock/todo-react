@@ -2,30 +2,14 @@ import Todo from "../todo/Todo";
 import mc from "./todos.module.scss";
 
 const Todos = (props) => {
-  const { allTodos, markAsCompleted, updateTodo } = props;
-
-  const completeTodo = (id, list) => {
-    return list.map((todo) => {
-      if (todo.id === id) return { ...todo, isCompleted: !todo.isCompleted };
-      return todo;
-    });
-  };
-
-  // const updateTodoValue = (id, value, list) => {
-  // return list.map((todo) => {
-  // if (todo.id === id) return { ...todo, name: value };
-  // return todo;
-  // });
-  // };
-
-  const updateTodoValue = (id, name, list) => list.map((todo) => (todo.id === id ? { ...todo, name } : todo));
+  const { allTodos, onCompleteTodo, onUpdateTodo } = props;
 
   const handleCompleteTodo = (id) => {
-    markAsCompleted(completeTodo(id, allTodos));
+    onCompleteTodo(id);
   };
 
   const handleUpdateTodo = (id, value) => {
-    updateTodo(updateTodoValue(id, value, allTodos));
+    onUpdateTodo(id, value);
   };
 
   return (
@@ -36,7 +20,7 @@ const Todos = (props) => {
           name={todo.name}
           id={todo.id}
           isCompleted={todo.isCompleted}
-          completeTodo={handleCompleteTodo}
+          onComplete={handleCompleteTodo}
           onUpdate={handleUpdateTodo}
         />
       ))}

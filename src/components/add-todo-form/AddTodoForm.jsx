@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Button from "../button/Button";
 import Input from "../input/Input";
+import Button from "../button/Button";
 import mc from "./add-todo-form.module.scss";
 
-const AddTodoForm = ({ allTodos, onAdd }) => {
+const AddTodoForm = ({ onAdd }) => {
   const [inputValue, setInputValue] = useState("");
 
   const handleChange = (event) => {
@@ -19,8 +19,7 @@ const AddTodoForm = ({ allTodos, onAdd }) => {
       name: inputValue,
       isCompleted: false,
     };
-    const newList = [...allTodos, todo];
-    onAdd(newList);
+    onAdd(todo);
     setInputValue("");
   };
 

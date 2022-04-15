@@ -1,0 +1,30 @@
+.container {
+  button {
+    &.active {
+      background-color: hsl(33deg 100% 88% / 70%);
+    }
+    &:not(.active) {
+      cursor: pointer;
+    }
+    &:first-child {
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+    &:last-child {
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+    margin: 0;
+    flex: 1 0;
+    border: none;
+    padding: 0 16px;
+    min-height: 32px;
+    line-height: 32px;
+    align-items: center;
+    background-color: hsl(33deg 100% 88% / 30%);
+    box-shadow: 0px 2px 4px 0px rgb(91 56 11 / 40%) inset;
+  }
+  padding-top: 32px;
+  align-items: center;
+  flex-direction: row;
+}
