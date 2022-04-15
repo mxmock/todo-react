@@ -3,7 +3,9 @@
 > _Notions: JSX, composants fonctionnels, props_
 
 Pour le developpement de cette app nous allons baser toute la logique sur un objet JS correspondant à un todo.
+
 Cet objet aura les propriétés suivantes: `id`, `name` et `isCompleted`.
+
 Il faut garder à l'esprit que ce sera la représentation de nos données, et chaque fois que nos données changent, react réactualisera la vue.
 
 ### Créer les composants de base
