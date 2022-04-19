@@ -1,16 +1,24 @@
-import "./app.scss";
 import { useState } from "react";
-import Todos from "../todos/Todos";
+import mc from "./app.module.scss";
 import TODOS from "../../constants/todos";
+import TodosList from "../todos-list/TodosList";
 
 const App = () => {
-  const [todos, setTodos] = useState(TODOS);
-
-  const updateList = (list) => {
-    setTodos([...list]);
+  const handleCompleteTodo = (id) => {
+    setTodos((p) =>
+      p.map((t) => (t.id === id ? { ...t, isCompleted: !t.isCompleted } : t))
+    );
   };
 
-  return <Todos allTodos={todos} markAsCompleted={updateList} />;
+  const [todos, setTodos] = useState(TODOS);
+
+  return (
+    <div className={mc.container}>
+      <div className={mc.list}>
+        <TodosList todos={todos} onCompleteTodo={handleCompleteTodo} />
+      </div>
+    </div>
+  );
 };
 
 export default App;

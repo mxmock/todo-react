@@ -1,0 +1,7 @@
+.container {
+  gap: 16px;
+  padding: 32px;
+  overflow: auto;
+  align-items: center;
+  max-height: calc(100vh - 64px);
+}
