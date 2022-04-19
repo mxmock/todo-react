@@ -1,12 +1,12 @@
 import { useState } from "react";
 import Button from "../button/Button";
 import Input from "../input/Input";
-import mc from "./add-todo-form.module.scss";
+import mc from "./todo-add-form.module.scss";
 
-const AddTodoForm = (props) => {
+const TodoAddForm = (props) => {
   const [inputValue, setInputValue] = useState("");
 
-  const handleChange = (event) => {
+  const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
 
@@ -22,7 +22,7 @@ const AddTodoForm = (props) => {
         label={"Nom de la tâche"}
         value={inputValue}
         type={"text"}
-        onChange={handleChange}
+        onChange={handleInputChange}
       />
 
       <Button type={"submit"} text={"Ajouter"} />
@@ -30,4 +30,4 @@ const AddTodoForm = (props) => {
   );
 };
 
-export default AddTodoForm;
+export default TodoAddForm;
