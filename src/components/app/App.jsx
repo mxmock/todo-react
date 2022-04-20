@@ -1,31 +1,54 @@
-import "./app.scss";
 import { useState } from "react";
-import Todos from "../todos/Todos";
+import mc from "./app.module.scss";
 import TODOS from "../../constants/todos";
+import TodosList from "../todos-list/TodosList";
 import trashIcon from "../../img/trash-outline.svg";
 import FloatingBtn from "../floating-btn/FloatingBtn";
-import AddTodoForm from "../add-todo-form/AddTodoForm";
+import TodoAddForm from "../todo-add-form/TodoAddForm";
 
 const App = () => {
-  const [todos, setTodos] = useState(TODOS);
+  /*************************** COMPLETE ***************************/
 
-  const updateList = (list) => {
-    setTodos([...list]);
+  const handleCompleteTodo = (id) => {
+    setTodos((p) =>
+      p.map((t) => (t.id === id ? { ...t, isCompleted: !t.isCompleted } : t))
+    );
   };
+
+  /*************************** ADD ***************************/
+
+  const handleAddTodo = (todo) => {
+    setTodos((prev) => [...prev, todo]);
+  };
+
+  /*************************** DELETE ***************************/
 
   const deleteCompleted = () => {
-    const arr = todos.filter((todo) => !todo.isCompleted);
-    updateList(arr);
+    setTodos((prev) => prev.filter((todo) => !todo.isCompleted));
   };
 
+  /*************************** UPDATE ***************************/
+
+  const handleUpdateTodo = (id, name) => {
+    setTodos((p) => p.map((t) => (t.id === id ? { ...t, name } : t)));
+  };
+
+  /*************************** STATES ***************************/
+
+  const [todos, setTodos] = useState(TODOS);
+
+  /*************************** HTML ***************************/
+
   return (
-    <div className="container">
-      <AddTodoForm allTodos={todos} onAdd={updateList} />
-      <Todos
-        allTodos={todos}
-        markAsCompleted={updateList}
-        updateTodo={updateList}
-      />
+    <div className={mc.container}>
+      <TodoAddForm onAdd={handleAddTodo} />
+      <div className={mc.list}>
+        <TodosList
+          todos={todos}
+          onCompleteTodo={handleCompleteTodo}
+          onUpdateTodo={handleUpdateTodo}
+        />
+      </div>
       <FloatingBtn src={trashIcon} color="#d40502" click={deleteCompleted} />
     </div>
   );
