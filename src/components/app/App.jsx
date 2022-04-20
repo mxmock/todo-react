@@ -1,42 +1,26 @@
 import mc from "./app.module.scss";
-import Todos from "../todos/Todos";
 import TODOS from "../../constants/todos";
 import { useEffect, useState } from "react";
 import { FILTER } from "../../constants/utils";
+import TodosList from "../todos-list/TodosList";
 import trashIcon from "../../img/trash-outline.svg";
 import FloatingBtn from "../floating-btn/FloatingBtn";
-import AddTodoForm from "../add-todo-form/AddTodoForm";
-import FilterButtons from "../filter-buttons/FilterButtons";
+import TodosFilter from "../todos-filter/TodosFilter";
+import TodoAddForm from "../todo-add-form/TodoAddForm";
 
 const App = () => {
-  const [todos, setTodos] = useState(TODOS);
-  const [filter, setFilter] = useState(FILTER.ALL);
-  const [filteredTodos, setFilteredTodos] = useState(TODOS);
+  /*************************** COMPLETE ***************************/
+
+  const handleCompleteTodo = (id) => {
+    setTodos((p) =>
+      p.map((t) => (t.id === id ? { ...t, isCompleted: !t.isCompleted } : t))
+    );
+  };
 
   /*************************** ADD ***************************/
 
   const handleAddTodo = (todo) => {
     setTodos((prev) => [...prev, todo]);
-  };
-
-  /*************************** COMPLETE ***************************/
-
-  // version simple, détaillée
-  const handleCompleteTodo = (id) => {
-    const updateOneTodo = (todo) => {
-      if (todo.id === id) {
-        return { ...todo, isCompleted: !todo.isCompleted };
-      } else {
-        return todo;
-      }
-    };
-
-    const updateAllTodos = (previousList) => {
-      const newList = previousList.map(updateOneTodo);
-      return newList;
-    };
-
-    setTodos(updateAllTodos);
   };
 
   /*************************** DELETE ***************************/
@@ -47,33 +31,69 @@ const App = () => {
 
   /*************************** UPDATE ***************************/
 
-  // version synthétique
   const handleUpdateTodo = (id, name) => {
     setTodos((p) => p.map((t) => (t.id === id ? { ...t, name } : t)));
   };
 
+  /*************************** STATES ***************************/
+
+  const [todos, setTodos] = useState(TODOS);
+  const [filter, setFilter] = useState(FILTER.ALL);
+  const [filteredTodos, setFilteredTodos] = useState(TODOS);
+
   /*************************** EFFECTS ***************************/
 
+  // version détaillée
+  // const updateFilteredTodos = () => {
+  //   let filtered = [];
+
+  //   if (filter === FILTER.COMPLETED) {
+  //     todos.forEach((todo) => {
+  //       if (todo.isCompleted) {
+  //         filtered.push(todo);
+  //       }
+  //     });
+  //   }
+
+  //   if (filter === FILTER.UNCOMPLETED) {
+  //     todos.forEach((todo) => {
+  //       if (!todo.isCompleted) {
+  //         filtered.push(todo);
+  //       }
+  //     });
+  //   }
+
+  //   if (filter === FILTER.ALL) {
+  //     todos.forEach((todo) => {
+  //       filtered.push(todo);
+  //     });
+  //   }
+
+  //   setFilteredTodos(filtered);
+  // };
+
+  // useEffect(updateFilteredTodos, [filter, todos]);
+
+  // version synthétique
   useEffect(() => {
-    const filtered =
-      filter === FILTER.COMPLETED
+    setFilteredTodos(() => {
+      return filter === FILTER.COMPLETED
         ? todos.filter((t) => t.isCompleted)
         : filter === FILTER.UNCOMPLETED
         ? todos.filter((t) => !t.isCompleted)
         : [...todos];
-
-    setFilteredTodos(filtered);
+    });
   }, [filter, todos]);
 
   /*************************** HTML ***************************/
 
   return (
     <div className={mc.container}>
-      <AddTodoForm onAdd={handleAddTodo} />
+      <TodoAddForm onAdd={handleAddTodo} />
       <div className={mc.list}>
-        <FilterButtons filter={filter} handleClick={(f) => setFilter(f)} />
-        <Todos
-          allTodos={filteredTodos}
+        <TodosFilter filter={filter} click={(f) => setFilter(f)} />
+        <TodosList
+          todos={filteredTodos}
           onCompleteTodo={handleCompleteTodo}
           onUpdateTodo={handleUpdateTodo}
         />

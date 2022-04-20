@@ -1,13 +1,13 @@
 import { useState } from "react";
 import Input from "../input/Input";
-import mc from "./todo.module.scss";
+import mc from "./todo-item.module.scss";
 
 const TODO_MODE = { READ: 1, EDIT: 2 };
 
-const Todo = (props) => {
-  const { name, id, isCompleted, onComplete, onUpdate } = props;
+const TodoItem = (props) => {
+  const { id, name, isCompleted, onComplete, onUpdate } = props;
 
-  const handleClick = () => onComplete(id);
+  const handleTodoClick = () => onComplete(id);
   const handleEditClick = () => setMode(TODO_MODE.EDIT);
   const handleInputChange = (e) => setUpdatedValue(e.target.value);
 
@@ -30,11 +30,20 @@ const Todo = (props) => {
   const [updatedValue, setUpdatedValue] = useState(name);
 
   return (
-    <li className={isCompleted ? `${mc.todo} ${mc.completed}` : `${mc.todo}`}>
+    <li
+      className={
+        isCompleted ? `${mc.container} ${mc.completed}` : `${mc.container}`
+      }
+    >
       {mode === TODO_MODE.READ ? (
         <>
-          <span onClick={handleClick}>{name}</span>
-          <span className={mc.edit} onClick={handleEditClick}></span>
+          <span className={mc.name} onClick={handleTodoClick}>
+            {name}
+          </span>
+          <span
+            className={`${mc.icon} ${mc.edit}`}
+            onClick={handleEditClick}
+          ></span>
         </>
       ) : (
         <>
@@ -46,11 +55,11 @@ const Todo = (props) => {
             onChange={handleInputChange}
             onKey={handleKeydown}
           />
-          <span className={mc.cancel} onClick={cancel}></span>
+          <span className={`${mc.icon} ${mc.cancel}`} onClick={cancel}></span>
         </>
       )}
     </li>
   );
 };
 
-export default Todo;
+export default TodoItem;
