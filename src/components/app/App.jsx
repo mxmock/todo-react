@@ -1,21 +1,43 @@
-import "./app.scss";
 import { useState } from "react";
-import Todos from "../todos/Todos";
+import mc from "./app.module.scss";
 import TODOS from "../../constants/todos";
-import AddTodoForm from "../add-todo-form/AddTodoForm";
+import TodosList from "../todos-list/TodosList";
+import TodoAddForm from "../todo-add-form/TodoAddForm";
 
 const App = () => {
-  const [todos, setTodos] = useState(TODOS);
+  /*************************** COMPLETE ***************************/
 
-  const updateList = (list) => {
-    console.log(list);
-    setTodos([...list]);
+  const handleCompleteTodo = (id) => {
+    setTodos((p) =>
+      p.map((t) => (t.id === id ? { ...t, isCompleted: !t.isCompleted } : t))
+    );
   };
 
+  /*************************** ADD ***************************/
+
+  // version simple
+  const handleAddTodo = (todo) => {
+    const newList = [...todos, todo];
+    setTodos(newList);
+  };
+
+  // version synthétique
+  // const handleAddTodo = (todo) => {
+  // setTodos((prev) => [...prev, todo]);
+  // };
+
+  /*************************** STATES ***************************/
+
+  const [todos, setTodos] = useState(TODOS);
+
+  /*************************** HTML ***************************/
+
   return (
-    <div className="container">
-      <AddTodoForm allTodos={todos} onAdd={updateList} />
-      <Todos allTodos={todos} markAsCompleted={updateList} />
+    <div className={mc.container}>
+      <TodoAddForm onAdd={handleAddTodo} />
+      <div className={mc.list}>
+        <TodosList todos={todos} onCompleteTodo={handleCompleteTodo} />
+      </div>
     </div>
   );
 };

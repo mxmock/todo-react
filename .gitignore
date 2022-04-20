@@ -143,12 +143,3 @@ package-lock.json
 # System Files
 .DS_Store
 Thumbs.db
-
-# COMMANDS
-*.cmd
-*.lnk
-*.sh
-
-# DOCKER
-*.yml
-Dockerfile
