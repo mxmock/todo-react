@@ -14,32 +14,28 @@
   position: relative;
 }
 
-.todo {
+.container {
   --todo-radius: 4px;
   --todo-height: 32px;
   --todo-icon-size: 24px;
   &.completed,
   &.completed:hover {
-    span {
-      &:first-child {
-        &:after {
-          width: 80%;
-        }
-        cursor: default;
-        box-shadow: none;
-        background: lightgrey;
+    .name {
+      &:after {
+        width: 80%;
       }
+      cursor: default;
+      box-shadow: none;
+      background: lightgrey;
     }
   }
   &:hover,
   &:focus,
   &:focus-within {
     &:not(.completed) {
-      span {
-        &:last-child {
-          transform: scale(1);
-          width: var(--todo-icon-size);
-        }
+      .icon {
+        transform: scale(1);
+        width: var(--todo-icon-size);
       }
     }
   }
@@ -47,7 +43,7 @@
     flex: 1 0;
   }
   span {
-    &:first-child {
+    &.name {
       @include todo-bar;
       padding: 0 16px;
       overflow: hidden;
@@ -55,7 +51,7 @@
       min-height: var(--todo-height);
       line-height: var(--todo-height);
     }
-    &:last-child {
+    &.icon {
       &.edit {
         background-image: url(../../img/edit-outline.svg);
       }

@@ -1,0 +1,14 @@
+version: '3'
+services:
+  todo-react:
+    command: npm run start
+    restart: unless-stopped
+    container_name: todo-react
+    image: node
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src/:/home/node/app/src:ro
