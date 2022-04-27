@@ -43,38 +43,6 @@ const App = () => {
 
   /*************************** EFFECTS ***************************/
 
-  // version détaillée
-  // const updateFilteredTodos = () => {
-  //   let filtered = [];
-
-  //   if (filter === FILTER.COMPLETED) {
-  //     todos.forEach((todo) => {
-  //       if (todo.isCompleted) {
-  //         filtered.push(todo);
-  //       }
-  //     });
-  //   }
-
-  //   if (filter === FILTER.UNCOMPLETED) {
-  //     todos.forEach((todo) => {
-  //       if (!todo.isCompleted) {
-  //         filtered.push(todo);
-  //       }
-  //     });
-  //   }
-
-  //   if (filter === FILTER.ALL) {
-  //     todos.forEach((todo) => {
-  //       filtered.push(todo);
-  //     });
-  //   }
-
-  //   setFilteredTodos(filtered);
-  // };
-
-  // useEffect(updateFilteredTodos, [filter, todos]);
-
-  // version synthétique
   useEffect(() => {
     setFilteredTodos(() => {
       return filter === FILTER.COMPLETED

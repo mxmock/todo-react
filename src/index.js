@@ -4,9 +4,19 @@ import ReactDOM from "react-dom";
 import App from "./components/app/App";
 import reportWebVitals from "./reportWebVitals";
 
+/* Mise en place de redux */
+import { createStore } from "redux";
+import { Provider } from "react-redux"; // contextualiser le store
+import reducer from "./reducers/todos-reducer";
+
+const store = createStore(reducer);
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {/* Mise en place de redux */}
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

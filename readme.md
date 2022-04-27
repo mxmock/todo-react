@@ -1,24 +1,26 @@
-# Todo App - Step 8
+# Todo App - Step 9
 
-> _Notions: hooks, useEffect_
+> _Notions: Redux, React-Redux_
 
-### Ajouter un filtrage
+### Installation
 
-Le but est d'avoir un composant `TodosFilter` qui permettra de filtrer la liste des todos afin d'afficher soit tous les todos, soit uniquement ceux complétés, soit uniquement ceux non complétés.
-Ce composant sera composé de trois boutons qui activeront le filtre voulu _(all, completed, uncompleted)_.
+Installer **redux** et **react-redux** avec les commandes suivantes:
 
-##### _Le composant `TodosFilter.jsx` :_
+```
+npm install redux
+npm install react-redux
+```
 
-- [ ] Aura les **props** suivantes: `filter`, `click`.
-- [ ] Retournera une `<div>` avec la class `mc.container`.
-- [ ] Dans cette `<div>` il y aura trois `<button>`, chacun avec une class `mc.active`, si et uniquement si, `filter` vaut la valeur de filtre que le bouton doit activer.
-- [ ] Chaque bouton doit porter l'événement `onClick`. Cet événement doit executer la fonction `click` avec en paramètre le filtre voulu.
+### Le reducer
 
-##### _Dans `App.jsx` :_
+- [ ] Créer un dossier `reducers` dans le dossier `src`.
+- [ ] Dans `reducers`, créer un fichier `todos-reducer`.
+- [ ] Dans ce fichier, créer un **state** initial qui sera un objet js avec une propriété `todos` qui aura comme valeur la liste `TODOS` _(depuis le dossier `constants`)_.
+- [ ] Toujours dans `todos-reducer`, créer une fonction qui aura en paramètre un **state** avec comme valeur défaut le **state** initial, et une action avec comme valeur par défaut un objet vide. Cette fonction ne fera pour le moment que retourner le **state**.
 
-- [ ] Créer un **state** qui conservera l'état du filtre séléctionné, avec comme valeur par défaut le filtre affichant tous les todos.
-- [ ] Créer un **state** qui conservera l'état de la liste filtrée, avec comme valeur par défaut la liste `TODOS`.
-- [ ] Ajouter `<TodosFilter />` en tant que premier enfant de la `<div>` ayant la class `mc.list`.
-- [ ] Envoyer à ce composant le **state** du filtre, et la fonction permettant de mettre à jour le filtre séléctionné _(le **state** donc)_.
-- [ ] Créer une fonction qui mettra à jour la liste des todos filtrés. Dans cette fonction on créé une nouvelle liste à partir de la liste `todos`, et en fonction du filtre séléctionné. Puis mettre à jour le **state** des todos filtrés avec cette nouvelle liste.
-- [ ] Utiliser un effet de bord _(**useEffect**)_, qui executera la fonction qui vient d'être créée, à chaque fois que l'état du filtre change et que l'état de la liste `todos` change.
+### Le store
+
+> _Les étapes suivantes se déroulent dans `index.js`_
+
+- [ ] Créer un **store** via la fonction `createStore` de **redux**, et le stocker dans une variable. _(transmettre à la fonction `createStore` le reducer créé précédemment)_
+- [ ] Englober le composant `App` du `Provider` fourni par **react-redux**, en n'oubliant pas l'attribut `store` qui recevra le **store** créé juste avant.
