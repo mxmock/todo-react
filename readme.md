@@ -23,4 +23,4 @@ npm install react-redux
 > _Les étapes suivantes se déroulent dans `index.js`_
 
 - [ ] Créer un **store** via la fonction `createStore` de **redux**, et le stocker dans une variable. _(transmettre à la fonction `createStore` le reducer créé précédemment)_
-- [ ] Englober le composant `App` du `Provider` fourni par **react-redux**, en n'oubliant pas l'attribut `store` qui recevra le **store** créé juste avant.
+- [ ] Englober le composant `App` avec le `Provider` fourni par **react-redux**, en n'oubliant pas l'attribut `store` qui recevra le **store** créé juste avant.

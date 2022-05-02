@@ -7,7 +7,6 @@ import trashIcon from "../../img/trash-outline.svg";
 import FloatingBtn from "../floating-btn/FloatingBtn";
 import TodosFilter from "../todos-filter/TodosFilter";
 import TodoAddForm from "../todo-add-form/TodoAddForm";
-import { useSelector } from "react-redux";
 
 const App = () => {
   /*************************** COMPLETE ***************************/
@@ -39,7 +38,6 @@ const App = () => {
   /*************************** STATES ***************************/
 
   const [todos, setTodos] = useState(TODOS);
-  const state = useSelector((state) => state.todos);
   const [filter, setFilter] = useState(FILTER.ALL);
   const [filteredTodos, setFilteredTodos] = useState(TODOS);
 
@@ -53,7 +51,6 @@ const App = () => {
         ? todos.filter((t) => !t.isCompleted)
         : [...todos];
     });
-    console.log(state);
   }, [filter, todos]);
 
   /*************************** HTML ***************************/
