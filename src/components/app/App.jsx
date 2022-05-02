@@ -1,5 +1,6 @@
 import mc from "./app.module.scss";
 import TODOS from "../../constants/todos";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { FILTER } from "../../constants/utils";
 import TodosList from "../todos-list/TodosList";
@@ -9,35 +10,9 @@ import TodosFilter from "../todos-filter/TodosFilter";
 import TodoAddForm from "../todo-add-form/TodoAddForm";
 
 const App = () => {
-  /*************************** COMPLETE ***************************/
-
-  const handleCompleteTodo = (id) => {
-    setTodos((p) =>
-      p.map((t) => (t.id === id ? { ...t, isCompleted: !t.isCompleted } : t))
-    );
-  };
-
-  /*************************** ADD ***************************/
-
-  const handleAddTodo = (todo) => {
-    setTodos((prev) => [...prev, todo]);
-  };
-
-  /*************************** DELETE ***************************/
-
-  const deleteCompleted = () => {
-    setTodos((prev) => prev.filter((todo) => !todo.isCompleted));
-  };
-
-  /*************************** UPDATE ***************************/
-
-  const handleUpdateTodo = (id, name) => {
-    setTodos((p) => p.map((t) => (t.id === id ? { ...t, name } : t)));
-  };
-
   /*************************** STATES ***************************/
 
-  const [todos, setTodos] = useState(TODOS);
+  const todos = useSelector((state) => state.todos);
   const [filter, setFilter] = useState(FILTER.ALL);
   const [filteredTodos, setFilteredTodos] = useState(TODOS);
 
@@ -57,16 +32,12 @@ const App = () => {
 
   return (
     <div className={mc.container}>
-      <TodoAddForm onAdd={handleAddTodo} />
+      <TodoAddForm />
       <div className={mc.list}>
         <TodosFilter filter={filter} click={(f) => setFilter(f)} />
-        <TodosList
-          todos={filteredTodos}
-          onCompleteTodo={handleCompleteTodo}
-          onUpdateTodo={handleUpdateTodo}
-        />
+        <TodosList todos={filteredTodos} />
       </div>
-      <FloatingBtn src={trashIcon} color="#d40502" click={deleteCompleted} />
+      <FloatingBtn src={trashIcon} color="#d40502" />
     </div>
   );
 };

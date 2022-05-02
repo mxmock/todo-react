@@ -1,9 +1,12 @@
 import { useState } from "react";
 import Input from "../input/Input";
 import Button from "../button/Button";
+import { useDispatch } from "react-redux";
 import mc from "./todo-add-form.module.scss";
+import { TODOS_ACTIONS } from "../../constants/utils";
 
-const TodoAddForm = ({ onAdd }) => {
+const TodoAddForm = () => {
+  const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState("");
 
   const handleInputChange = (event) => setInputValue(event.target.value);
@@ -17,7 +20,7 @@ const TodoAddForm = ({ onAdd }) => {
       name: inputValue,
       isCompleted: false,
     };
-    onAdd(todo);
+    dispatch({ type: TODOS_ACTIONS.CREATE, todo });
     setInputValue("");
   };
 

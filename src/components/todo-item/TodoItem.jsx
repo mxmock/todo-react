@@ -1,13 +1,16 @@
 import { useState } from "react";
 import Input from "../input/Input";
 import mc from "./todo-item.module.scss";
+import { useDispatch } from "react-redux";
+import { TODOS_ACTIONS } from "../../constants/utils";
 
 const TODO_MODE = { READ: 1, EDIT: 2 };
 
 const TodoItem = (props) => {
-  const { id, name, isCompleted, onComplete, onUpdate } = props;
+  const dispatch = useDispatch();
+  const { id, name, isCompleted } = props;
 
-  const handleTodoClick = () => onComplete(id);
+  const handleTodoClick = () => dispatch({ type: TODOS_ACTIONS.COMPLETE, id });
   const handleEditClick = () => setMode(TODO_MODE.EDIT);
   const handleInputChange = (e) => setUpdatedValue(e.target.value);
 
@@ -18,7 +21,7 @@ const TodoItem = (props) => {
 
   const handleKeydown = (event) => {
     if (event.key === "Enter" && updatedValue.length > 0) {
-      onUpdate(id, updatedValue);
+      dispatch({ type: TODOS_ACTIONS.UPDATE, id, name: updatedValue });
       setMode(TODO_MODE.READ);
     }
     if (event.key === "Escape") {

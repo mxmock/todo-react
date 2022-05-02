@@ -2,7 +2,7 @@ import mc from "./todos-list.module.scss";
 import TodoItem from "../todo-item/TodoItem";
 
 const TodosList = (props) => {
-  const { todos, onCompleteTodo, onUpdateTodo } = props;
+  const { todos } = props;
 
   const getList = () =>
     todos.map((t) => (
@@ -11,8 +11,6 @@ const TodosList = (props) => {
         id={t.id}
         name={t.name}
         isCompleted={t.isCompleted}
-        onComplete={onCompleteTodo}
-        onUpdate={onUpdateTodo}
       />
     ));
 
