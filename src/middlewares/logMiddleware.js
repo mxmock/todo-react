@@ -1,4 +1,5 @@
-import { LOGS_ACTIONS, TODOS_ACTIONS } from "../constants/utils";
+import { TODOS_ACTIONS } from "../constants/utils";
+import { createLog } from "../actions/logs-actions";
 
 const logMiddleware = (store) => (next) => (action) => {
   let log = null;
@@ -10,7 +11,7 @@ const logMiddleware = (store) => (next) => (action) => {
     };
   }
 
-  if (log) store.dispatch({ type: LOGS_ACTIONS.CREATE, log });
+  if (log) store.dispatch(createLog(log));
 
   const returnAction = next(action); // dispatch l'action
   return returnAction; // les autres middlewares...

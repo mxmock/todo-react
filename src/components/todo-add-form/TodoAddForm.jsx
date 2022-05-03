@@ -3,7 +3,7 @@ import Input from "../input/Input";
 import Button from "../button/Button";
 import { useDispatch } from "react-redux";
 import mc from "./todo-add-form.module.scss";
-import { LOGS_ACTIONS, TODOS_ACTIONS } from "../../constants/utils";
+import { createTodo } from "../../actions/todos-actions";
 
 const TodoAddForm = () => {
   const dispatch = useDispatch();
@@ -20,11 +20,7 @@ const TodoAddForm = () => {
       name: inputValue,
       isCompleted: false,
     };
-    const log = {
-      date: new Date().getHours() + "h" + new Date().getMinutes(),
-      name: `Tâche ajoutée => ${inputValue}`,
-    };
-    dispatch({ type: TODOS_ACTIONS.CREATE, todo });
+    dispatch(createTodo(todo));
     setInputValue("");
   };
 

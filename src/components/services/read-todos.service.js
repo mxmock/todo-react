@@ -1,4 +1,4 @@
-import { TODOS_ACTIONS } from "../../constants/utils";
+import { readTodos } from "../../actions/todos-actions";
 
 const readTodosRequest = async () => {
   const config = {
@@ -30,7 +30,7 @@ const readTodosThunk = async (dispatch, state) => {
     name: todo.title,
     isCompleted: todo.completed,
   }));
-  dispatch({ type: TODOS_ACTIONS.READ, todos });
+  dispatch(readTodos(todos));
 };
 
 export default readTodosThunk;
