@@ -9,7 +9,7 @@ import FloatingBtn from "../floating-btn/FloatingBtn";
 import TodosFilter from "../todos-filter/TodosFilter";
 import TodoAddForm from "../todo-add-form/TodoAddForm";
 import { useDispatch, useSelector } from "react-redux";
-import readTodosThunk from "../services/read-todos.service";
+import readTodosThunk from "../../services/read-todos.service";
 
 const App = () => {
   /*************************** STATES ***************************/
