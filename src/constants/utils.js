@@ -5,8 +5,14 @@ export const FILTER = {
 };
 
 export const TODOS_ACTIONS = {
-  CREATE: 1,
-  UPDATE: 2,
-  DELETE: 3,
-  COMPLETE: 4,
+  CREATE: "create_todo",
+  UPDATE: "update_todo",
+  DELETE: "delete_todo",
+  COMPLETE: "complete_todo",
+};
+
+export const LOGS_ACTIONS = {
+  CREATE: "create_log",
+  UPDATE: "update_log",
+  DELETE: "delete_log",
 };

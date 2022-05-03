@@ -2,6 +2,7 @@ import mc from "./app.module.scss";
 import TODOS from "../../constants/todos";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import LogsList from "../logs-list/LogsList";
 import { FILTER } from "../../constants/utils";
 import TodosList from "../todos-list/TodosList";
 import trashIcon from "../../img/trash-outline.svg";
@@ -12,7 +13,10 @@ import TodoAddForm from "../todo-add-form/TodoAddForm";
 const App = () => {
   /*************************** STATES ***************************/
 
-  const todos = useSelector((state) => state.todos);
+  const { todos, logs } = useSelector((state) => ({
+    todos: state.todoReducer.todos,
+    logs: state.logReducer.logs,
+  }));
   const [filter, setFilter] = useState(FILTER.ALL);
   const [filteredTodos, setFilteredTodos] = useState(TODOS);
 
@@ -32,7 +36,10 @@ const App = () => {
 
   return (
     <div className={mc.container}>
-      <TodoAddForm />
+      <div className={mc["left-side"]}>
+        <TodoAddForm />
+        {logs.length > 0 && <LogsList logs={logs} />}
+      </div>
       <div className={mc.list}>
         <TodosFilter filter={filter} click={(f) => setFilter(f)} />
         <TodosList todos={filteredTodos} />

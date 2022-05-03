@@ -1,0 +1,29 @@
+.container {
+  ul {
+    overflow: auto;
+    padding: 16px 0;
+  }
+  li {
+    span {
+      &:first-child {
+        &:after {
+          content: ":";
+        }
+        opacity: 0.75;
+        font-style: italic;
+      }
+      color: #c9d1d9;
+      font-size: 1.4rem;
+      line-height: 1.45;
+      flex-direction: row;
+    }
+    gap: 8px;
+    flex-direction: row;
+  }
+  overflow: auto;
+  padding: 0 16px;
+  max-width: 480px;
+  max-height: 480px;
+  border-radius: 6px;
+  background: #161b22;
+}

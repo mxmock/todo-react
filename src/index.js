@@ -7,9 +7,9 @@ import reportWebVitals from "./reportWebVitals";
 /* Mise en place de redux */
 import { createStore } from "redux";
 import { Provider } from "react-redux"; // contextualiser le store
-import reducer from "./reducers/todos-reducer";
+import reducers from "./reducers/index";
 
-const store = createStore(reducer);
+const store = createStore(reducers);
 
 ReactDOM.render(
   <React.StrictMode>
