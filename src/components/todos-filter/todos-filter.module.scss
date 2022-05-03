@@ -28,7 +28,11 @@
     background-color: hsl(33deg 100% 88% / 30%);
     box-shadow: 0px 2px 4px 0px rgb(91 56 11 / 40%) inset;
   }
+  top: 0;
+  z-index: 1000;
+  position: sticky;
   align-items: center;
   flex-direction: row;
-  padding: 32px 32px 0 32px;
+  background: lightcoral;
+  padding: 32px 32px 16px 32px;
 }

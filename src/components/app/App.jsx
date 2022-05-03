@@ -32,7 +32,9 @@ const App = () => {
 
   return (
     <div className={mc.container}>
-      <TodoAddForm />
+      <div className={mc["left-side"]}>
+        <TodoAddForm />
+      </div>
       <div className={mc.list}>
         <TodosFilter filter={filter} click={(f) => setFilter(f)} />
         <TodosList todos={filteredTodos} />
