@@ -15,7 +15,9 @@ const App = () => {
 
   return (
     <div className={mc.container}>
-      <TodoAddForm />
+      <div className={mc["left-side"]}>
+        <TodoAddForm />
+      </div>
       <div className={mc.list}>
         <TodosList todos={todos} onCompleteTodo={handleCompleteTodo} />
       </div>

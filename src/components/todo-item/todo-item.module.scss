@@ -35,7 +35,7 @@
     &:not(.completed) {
       .icon {
         transform: scale(1);
-        width: var(--todo-icon-size);
+        min-width: var(--todo-icon-size);
       }
     }
   }
