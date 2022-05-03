@@ -1,6 +1,5 @@
 import mc from "./app.module.scss";
 import TODOS from "../../constants/todos";
-import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import LogsList from "../logs-list/LogsList";
 import { FILTER } from "../../constants/utils";
@@ -9,10 +8,13 @@ import trashIcon from "../../img/trash-outline.svg";
 import FloatingBtn from "../floating-btn/FloatingBtn";
 import TodosFilter from "../todos-filter/TodosFilter";
 import TodoAddForm from "../todo-add-form/TodoAddForm";
+import { useDispatch, useSelector } from "react-redux";
+import readTodosThunk from "../services/read-todos.service";
 
 const App = () => {
   /*************************** STATES ***************************/
 
+  const dispatch = useDispatch();
   const { todos, logs } = useSelector((state) => ({
     todos: state.todoReducer.todos,
     logs: state.logReducer.logs,
@@ -21,6 +23,14 @@ const App = () => {
   const [filteredTodos, setFilteredTodos] = useState(TODOS);
 
   /*************************** EFFECTS ***************************/
+
+  /* On veut envoyer une fonction en argument de dispatch, afin que le 
+  middleware thunk execute cette fonction (async / side effect).
+  Cette fonction peut prendre en argmument dispatch et getState 
+  (voir signature de la fonction thunkMiddleware) */
+  useEffect(() => {
+    dispatch(readTodosThunk);
+  }, []);
 
   useEffect(() => {
     setFilteredTodos(() => {

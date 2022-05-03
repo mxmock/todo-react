@@ -5,12 +5,13 @@ import App from "./components/app/App";
 import reportWebVitals from "./reportWebVitals";
 
 /* Mise en place de redux */
+import thunk from "redux-thunk";
 import { Provider } from "react-redux"; // contextualiser le store
 import reducers from "./reducers/index";
 import { applyMiddleware, createStore } from "redux";
 import logMiddleware from "./middlewares/logMiddleware";
 
-const middlewares = applyMiddleware(logMiddleware);
+const middlewares = applyMiddleware(thunk, logMiddleware);
 
 const store = createStore(reducers, middlewares);
 

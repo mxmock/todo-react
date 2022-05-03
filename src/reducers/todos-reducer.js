@@ -1,8 +1,7 @@
-import TODOS from "../constants/todos";
 import { TODOS_ACTIONS } from "../constants/utils";
 
 const initialState = {
-  todos: TODOS,
+  todos: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -16,6 +15,9 @@ const reducer = (state = initialState, action = {}) => {
       // copie profonde (nested) d'objet
       newList = oldList.map((todo) => ({ ...todo }));
       newList.push({ ...newTodo });
+      break;
+    case TODOS_ACTIONS.READ:
+      newList = action.todos.map((t) => ({ ...t }));
       break;
     case TODOS_ACTIONS.UPDATE:
       const name = action.name;
