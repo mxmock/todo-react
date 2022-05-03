@@ -25,7 +25,6 @@ const TodoAddForm = () => {
       name: `Tâche ajoutée => ${inputValue}`,
     };
     dispatch({ type: TODOS_ACTIONS.CREATE, todo });
-    dispatch({ type: LOGS_ACTIONS.CREATE, log });
     setInputValue("");
   };
 

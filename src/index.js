@@ -5,11 +5,14 @@ import App from "./components/app/App";
 import reportWebVitals from "./reportWebVitals";
 
 /* Mise en place de redux */
-import { createStore } from "redux";
 import { Provider } from "react-redux"; // contextualiser le store
 import reducers from "./reducers/index";
+import { applyMiddleware, createStore } from "redux";
+import logMiddleware from "./middlewares/logMiddleware";
 
-const store = createStore(reducers);
+const middlewares = applyMiddleware(logMiddleware);
+
+const store = createStore(reducers, middlewares);
 
 ReactDOM.render(
   <React.StrictMode>
