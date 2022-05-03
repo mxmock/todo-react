@@ -15,8 +15,9 @@ const App = () => {
   /*************************** STATES ***************************/
 
   const dispatch = useDispatch();
-  const { todos, logs } = useSelector((state) => ({
+  const { todos, logs, isLoading } = useSelector((state) => ({
     todos: state.todoReducer.todos,
+    isLoading: state.todoReducer.isLoading,
     logs: state.logReducer.logs,
   }));
   const [filter, setFilter] = useState(FILTER.ALL);
@@ -52,7 +53,11 @@ const App = () => {
       </div>
       <div className={mc.list}>
         <TodosFilter filter={filter} click={(f) => setFilter(f)} />
-        <TodosList todos={filteredTodos} />
+        {isLoading ? (
+          <p className={mc.loading}>Chargement des données</p>
+        ) : (
+          <TodosList todos={filteredTodos} />
+        )}
       </div>
       <FloatingBtn src={trashIcon} color="#d40502" />
     </div>

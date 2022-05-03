@@ -10,6 +10,7 @@ export const TODOS_ACTIONS = {
   UPDATE: "update_todo",
   DELETE: "delete_todos",
   COMPLETE: "complete_todo",
+  SET_LOADING: "set_loading_todos",
 };
 
 export const LOGS_ACTIONS = {

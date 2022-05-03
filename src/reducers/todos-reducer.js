@@ -2,6 +2,7 @@ import { TODOS_ACTIONS } from "../constants/utils";
 
 const initialState = {
   todos: [],
+  isLoading: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -31,6 +32,8 @@ const reducer = (state = initialState, action = {}) => {
         t.id === id ? { ...t, isCompleted: !t.isCompleted } : { ...t }
       );
       break;
+    case TODOS_ACTIONS.SET_LOADING:
+      return { ...state, isLoading: action.isLoading };
     default:
       break;
   }

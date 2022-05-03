@@ -9,3 +9,7 @@ export const updateTodo = (p) => ({
 });
 export const deleteTodos = () => ({ type: TODOS_ACTIONS.DELETE });
 export const completeTodos = (p) => ({ type: TODOS_ACTIONS.COMPLETE, id: p });
+export const setLoading = (p) => ({
+  type: TODOS_ACTIONS.SET_LOADING,
+  isLoading: p,
+});

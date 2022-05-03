@@ -1,4 +1,4 @@
-import { readTodos } from "../../actions/todos-actions";
+import { readTodos, setLoading } from "../../actions/todos-actions";
 
 const readTodosRequest = async () => {
   const config = {
@@ -23,7 +23,9 @@ const readTodosRequest = async () => {
 };
 
 const readTodosThunk = async (dispatch, state) => {
+  dispatch(setLoading(true));
   const response = await readTodosRequest();
+  dispatch(setLoading(false));
   if (!response) return;
   const todos = response.map((todo) => ({
     id: todo.id,
