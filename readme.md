@@ -1,3 +1,3 @@
-# Todo App - Step 14
+# Todo App - Step 15
 
-- [ ] Restructuration de l'app
+- [ ] Utiliser `Axios` + gestion d'erreurs
