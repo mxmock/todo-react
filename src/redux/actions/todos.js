@@ -1,9 +1,9 @@
 import { TODOS_ACTIONS } from "../constants/todos";
 
-export const createTodo = (name) => {
-  const todo = { id: Date.now(), name, isCompleted: false };
-  return { type: TODOS_ACTIONS.CREATE, payload: { todo } };
-};
+export const createTodo = (todo) => ({
+  type: TODOS_ACTIONS.CREATE,
+  payload: { todo },
+});
 
 export const readTodos = (todos) => ({
   type: TODOS_ACTIONS.READ,
