@@ -1,7 +1,6 @@
+import logReducer from "./logs";
+import todoReducer from "./todos";
 import { combineReducers } from "redux";
-
-import logReducer from "./logs-reducer";
-import todoReducer from "./todos-reducer";
 
 const reducers = combineReducers({
   logReducer,

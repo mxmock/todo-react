@@ -3,7 +3,7 @@ import Input from "../input/Input";
 import Button from "../button/Button";
 import { useDispatch } from "react-redux";
 import mc from "./todo-add-form.module.scss";
-import { createTodo } from "../../actions/todos-actions";
+import { createTodo } from "../../redux/actions/todos";
 
 const TodoAddForm = () => {
   const dispatch = useDispatch();
@@ -14,13 +14,7 @@ const TodoAddForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!inputValue) return;
-    const now = Date.now();
-    const todo = {
-      id: now,
-      name: inputValue,
-      isCompleted: false,
-    };
-    dispatch(createTodo(todo));
+    dispatch(createTodo(inputValue));
     setInputValue("");
   };
 

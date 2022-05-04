@@ -1,4 +1,4 @@
-import { LOGS_ACTIONS } from "../constants/utils";
+import { LOGS_ACTIONS } from "../constants/logs";
 
 const initialState = {
   logs: [],
@@ -7,16 +7,19 @@ const initialState = {
 const reducer = (state = initialState, action = {}) => {
   let newList = null;
   const oldList = state.logs;
+  const { type, payload } = action;
 
-  switch (action.type) {
-    case LOGS_ACTIONS.CREATE:
-      const newLog = action.log;
+  switch (type) {
+    case LOGS_ACTIONS.CREATE: {
+      const newLog = payload.log;
       // copie profonde (nested) d'objet
       newList = oldList.map((log) => ({ ...log }));
       newList.push({ ...newLog });
       break;
-    default:
+    }
+    default: {
       break;
+    }
   }
 
   return newList ? { ...state, logs: newList } : state;

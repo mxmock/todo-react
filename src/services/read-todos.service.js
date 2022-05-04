@@ -1,4 +1,4 @@
-import { readTodos, setLoading } from "../actions/todos-actions";
+import { readTodos, setLoading } from "../redux/actions/todos";
 
 const readTodosRequest = async () => {
   const config = {

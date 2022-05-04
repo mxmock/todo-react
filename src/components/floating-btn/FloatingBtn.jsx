@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import mc from "./floating-btn.module.scss";
-import { deleteTodos } from "../../actions/todos-actions";
+import { deleteTodos } from "../../redux/actions/todos";
 
 const FloatingBtn = ({ src, color }) => {
   const dispatch = useDispatch();
